@@ -38,10 +38,19 @@ public class LogUtil {
      *
      * @return
      */
-    public static String getStackTrace() {
+    public static void printStackTrace(Exception e) {
+        log(getStackTrace(e));
+    }
+
+    /**
+     * 获取调用栈
+     *
+     * @return
+     */
+    public static String getStackTrace(Exception e) {
         if (DEBUG) {
             StringBuilder sb = new StringBuilder("");
-            Exception e = new Exception("stack");
+            if (e == null) e = new Exception("stack");
             StackTraceElement[] trace = e.getStackTrace();
             for (int i = 0; i < trace.length; i++) {
                 sb.append("\nat " + trace[i]);
@@ -68,7 +77,7 @@ public class LogUtil {
         }
     }
 
-    // 当前文件名 
+    // 当前文件名
     public static String _FILE_() {
         if (DEBUG) {
             StackTraceElement traceElement = ((new Exception()).getStackTrace())[1];
@@ -78,7 +87,7 @@ public class LogUtil {
         }
     }
 
-    // 当前方法名 
+    // 当前方法名
     public static String _FUNC_() {
         if (DEBUG) {
             StackTraceElement traceElement = ((new Exception()).getStackTrace())[1];
@@ -88,7 +97,7 @@ public class LogUtil {
         }
     }
 
-    // 当前行号 
+    // 当前行号
     public static int _LINE_() {
         if (DEBUG) {
             StackTraceElement traceElement = ((new Exception()).getStackTrace())[1];
@@ -97,7 +106,7 @@ public class LogUtil {
         return 0;
     }
 
-    // 当前时间 
+    // 当前时间
     public static String _TIME_() {
         if (DEBUG) {
             Date now = new Date();
